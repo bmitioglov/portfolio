@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boris Mitioglov — Lead / Staff Software Engineer</title>
+<meta name="description" content="Portfolio of Boris Mitioglov — Lead / Staff Software Engineer. Platform, AI systems, distributed infrastructure.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Boris Mitioglov — Lead / Staff Software Engineer">
+<meta property="og:description" content="Platform, AI systems, distributed infrastructure. 12+ years shipping production systems.">
+<meta property="og:image" content="assets/avatar.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/avatar.jpeg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=EB+Garamond:ital@0;1&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- React + Babel (prod) -->
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<!-- Data -->
+<script src="src/data.js"></script>
+
+<!-- Components -->
+<script type="text/babel" src="src/Sidebar.jsx"></script>
+<script type="text/babel" src="src/Hero.jsx"></script>
+<script type="text/babel" src="src/Work.jsx"></script>
+<script type="text/babel" src="src/Projects.jsx"></script>
+<script type="text/babel" src="src/PumpX.jsx"></script>
+<script type="text/babel" src="src/SEOAuto.jsx"></script>
+<script type="text/babel" src="src/More.jsx"></script>
+
+<script type="text/babel">
+  function App() {
+    const [activeSection, setActiveSection] = React.useState("hero");
+
+    React.useEffect(() => {
+      const root = document.documentElement;
+      root.setAttribute("data-theme", "dark");
+      root.setAttribute("data-accent", "green");
+      root.setAttribute("data-fontpair", "editorial");
+      root.setAttribute("data-density", "comfy");
+    }, []);
+
+    React.useEffect(() => {
+      const ids = ["hero","about","work","projects","pumpx","seoauto","skills","certs","contact"];
+      const els = ids.map(id => document.getElementById(id)).filter(Boolean);
+      const obs = new IntersectionObserver((entries) => {
+        const hit = entries.find(e => e.isIntersecting);
+        if (hit) setActiveSection(hit.target.id);
+      }, { rootMargin: "-20% 0px -75% 0px", threshold: 0 });
+      els.forEach(el => obs.observe(el));
+      return () => obs.disconnect();
+    }, []);
+
+    function handleNav(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 16;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+
+    return (
+      <div className="app">
+        <Sidebar activeSection={activeSection} onNav={handleNav} />
+        <main className="main">
+          <Hero variant="editorial" />
+          <About />
+          <Work />
+          <Projects />
+          <PumpXCase />
+          <SEOAutoCase />
+          <Skills />
+          <Certs />
+          <Contact />
+        </main>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+
+</body>
+</html>
