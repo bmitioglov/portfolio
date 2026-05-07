@@ -477,6 +477,7 @@ em { font-style: italic; font-family: var(--f-display); color: var(--accent); fo
 .arch-diagram { position: relative; margin: 1.5rem 0 2rem; padding: 1rem 0; }
 .arch-wrap { position: relative; width: 100%; }
 .arch-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.arch-svg-mobile { display: none; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .arch-lines path { stroke: var(--border); stroke-width: 1; }
 .arch-packets .packet { fill: var(--accent); filter: drop-shadow(0 0 6px var(--accent)); }
 .arch-nodes {
@@ -494,6 +495,7 @@ em { font-style: italic; font-family: var(--f-display); color: var(--accent); fo
 @media (max-width: 800px) {
   .arch-nodes { grid-template-columns: 1fr 1fr; }
   .arch-svg { display: none; }
+  .arch-svg-mobile { display: block; }
 }
 
 /* Case grid */

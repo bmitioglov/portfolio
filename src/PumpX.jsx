@@ -149,6 +149,20 @@ function ArchDiagram() {
           <circle r="3" className="packet p2"><animateMotion dur="4.1s" repeatCount="indefinite" path="M330 70 L 400 100 L 470 70 L 670 70 L 770 100 L 770 160 L 670 190 L 470 190 L 400 160 L 330 190" /></circle>
         </g>
       </svg>
+      {/* Mobile: 2-col x 3-row layout — separate paths so packets travel between mobile node positions */}
+      <svg className="arch-svg-mobile" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <g className="arch-lines" fill="none" strokeDasharray="2 3" vectorEffect="non-scaling-stroke">
+          <path d="M25 17 L 75 17" />
+          <path d="M25 50 L 75 50" />
+          <path d="M25 83 L 75 83" />
+          <path d="M25 17 L 25 50" />
+          <path d="M75 50 L 75 83" />
+        </g>
+        <g className="arch-packets">
+          <circle r="1.6" className="packet p1"><animateMotion dur="3.6s" repeatCount="indefinite" path="M25 17 L 75 17 L 75 50 L 25 50 L 25 83 L 75 83" /></circle>
+          <circle r="1.6" className="packet p2"><animateMotion dur="4.4s" repeatCount="indefinite" path="M75 83 L 25 83 L 25 50 L 75 50 L 75 17 L 25 17" /></circle>
+        </g>
+      </svg>
 
       <div className="arch-nodes">
         <div className="arch-node n1">
