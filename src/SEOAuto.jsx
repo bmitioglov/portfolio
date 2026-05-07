@@ -3,7 +3,7 @@ function SEOAutoCase() {
   const [traffic, setTraffic] = React.useState(0);
   const [pages, setPages] = React.useState(0);
   const [domains, setDomains] = React.useState(0);
-  const ref = React.useRef(null);
+  const metricsRef = React.useRef(null);
 
   React.useEffect(() => {
     const obs = new IntersectionObserver((entries) => {
@@ -15,8 +15,8 @@ function SEOAutoCase() {
           obs.disconnect();
         }
       });
-    }, { threshold: 0.2 });
-    if (ref.current) obs.observe(ref.current);
+    }, { threshold: 0.25 });
+    if (metricsRef.current) obs.observe(metricsRef.current);
     return () => obs.disconnect();
   }, []);
 
@@ -32,7 +32,7 @@ function SEOAutoCase() {
   }
 
   return (
-    <section id="seoauto" className="sec seoauto-case" data-screen-label="SEOAuto Case Study" ref={ref}>
+    <section id="seoauto" className="sec seoauto-case" data-screen-label="SEOAuto Case Study">
       <div className="sec-head">
         <div className="sec-head-l mono xs dim">
           <span className="sec-idx">04b</span>
@@ -74,7 +74,7 @@ function SEOAutoCase() {
       </div>
 
       {/* Metrics */}
-      <div className="metrics-row">
+      <div className="metrics-row" ref={metricsRef}>
         <div className="metric-card">
           <div className="metric-val">{traffic.toLocaleString()}</div>
           <div className="metric-lbl mono xs dim">monthly organic traffic</div>

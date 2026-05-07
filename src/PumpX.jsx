@@ -2,7 +2,8 @@
 function PumpXCase() {
   const [mau, setMau] = React.useState(0);
   const [subs, setSubs] = React.useState(0);
-  const ref = React.useRef(null);
+  const [downloads, setDownloads] = React.useState(0);
+  const metricsRef = React.useRef(null);
 
   React.useEffect(() => {
     const obs = new IntersectionObserver((entries) => {
@@ -10,11 +11,12 @@ function PumpXCase() {
         if (e.isIntersecting) {
           animateTo(setMau, 220, 1400);
           animateTo(setSubs, 17, 1200);
+          animateTo(setDownloads, 12000, 1800);
           obs.disconnect();
         }
       });
     }, { threshold: 0.25 });
-    if (ref.current) obs.observe(ref.current);
+    if (metricsRef.current) obs.observe(metricsRef.current);
     return () => obs.disconnect();
   }, []);
 
@@ -30,7 +32,7 @@ function PumpXCase() {
   }
 
   return (
-    <section id="pumpx" className="sec pumpx-case" data-screen-label="PumpX Case Study" ref={ref}>
+    <section id="pumpx" className="sec pumpx-case" data-screen-label="PumpX Case Study">
       <div className="sec-head">
         <div className="sec-head-l mono xs dim">
           <span className="sec-idx">04</span>
@@ -71,7 +73,7 @@ function PumpXCase() {
       </div>
 
       {/* Metrics row */}
-      <div className="metrics-row">
+      <div className="metrics-row" ref={metricsRef}>
         <div className="metric-card">
           <div className="metric-val">{mau}</div>
           <div className="metric-lbl mono xs dim">monthly active users</div>
@@ -88,9 +90,9 @@ function PumpXCase() {
           <div className="metric-trend mono xs dim">tech direction</div>
         </div>
         <div className="metric-card">
-          <div className="metric-val">1</div>
-          <div className="metric-lbl mono xs dim">founder shipping end-to-end</div>
-          <div className="metric-trend mono xs dim">backend · mobile · ai</div>
+          <div className="metric-val">{downloads.toLocaleString()}+</div>
+          <div className="metric-lbl mono xs dim">all-time downloads</div>
+          <div className="metric-trend mono xs accent">↑ ios + android</div>
         </div>
       </div>
 
