@@ -183,6 +183,7 @@ window.PORTFOLIO = {
   },
 
   certifications: [
+    { name: "Claude Certified Architect – Foundations", issuer: "Anthropic", url: "https://verify.skilljar.com/c/prwvpf7zwa8r" },
     { name: "AI Fluency: Framework & Foundations", issuer: "Anthropic", url: "https://verify.skilljar.com/c/dus7695kqp76" },
     { name: "Claude 101", issuer: "Anthropic", url: "https://verify.skilljar.com/c/zzo9f2feb3hg" },
     { name: "Claude Code in Action", issuer: "Anthropic", url: "https://verify.skilljar.com/c/vbk2959mkah4" },
